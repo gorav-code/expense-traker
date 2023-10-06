@@ -25,17 +25,15 @@ function Expenses() {
         },
     ];
 
-    return (
-        <Card className="expenses">
+    return ( 
             <ul>
-            {
-                //passing paramters individually
-                expenses.map((item) => {
-                    return <ExpenseItem title={item.title} amount={item.amount} date={item.date}></ExpenseItem>
-                })
-            }
-            </ul>            
-        </Card>
+                {
+                    //passing paramters individually
+                    expenses.map((item) => {
+                        return <ExpenseItem title={item.title} amount={item.amount} date={item.date}></ExpenseItem>
+                    })
+                }
+            </ul>
     );
 }
 

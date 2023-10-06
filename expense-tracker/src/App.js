@@ -9,7 +9,11 @@ function App() {
     <div>
       <h1>Lets gets started!</h1>
       <Card className="expenses">
+
+        <h2>Add a new expense</h2>
         <NewExpense />
+
+        <h2>Current Expenses</h2>
         <Expenses />
       </Card>
     </div>

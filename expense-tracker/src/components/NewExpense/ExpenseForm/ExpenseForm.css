@@ -7,9 +7,10 @@
   }
   
   .new-expense__control label {
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 0.5rem;
     display: block;
+    color: rgb(199, 199, 199);
   }
   
   .new-expense__control input {
