@@ -4,17 +4,23 @@ import ExpenseItem from '../ExpenseItem/ExpenseItem';
 
 function Expenses(props) {
 
+    console.log(props.items);
     const expenses = props.items;
-    
-    return ( 
-            <ul>
-                {
-                    //passing paramters individually
-                    expenses.map((item) => {
-                        return <ExpenseItem title={item.title} amount={item.amount} date={item.date}></ExpenseItem>
-                    })
-                }
-            </ul>
+
+    //in case no expenses found.
+    if (props.items.length === 0) {
+        return <h2 className='expenses-list__fallback'>Found no expenses.</h2>;
+    }
+
+    return (
+        <ul className='expenses-list'>
+            {
+                //passing paramters individually
+                expenses.map((item) => {
+                    return <ExpenseItem key={item.id} title={item.title} amount={item.amount} date={item.date}></ExpenseItem>
+                })
+            }
+        </ul>
     );
 }
 

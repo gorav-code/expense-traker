@@ -43,10 +43,10 @@ function App() {
     //expensesOriginal.push(expense);
     
     //Note: since we are updating our state based on previous state then we will use function form 
-    setExpenses(prevExpenses => {
+    setExpenses((prevExpenses) => {
       //this will return a new array by merging new item from 'setExpenses' and existing items from '...expenses'.
-      return [expense, ...prevExpenses]
-    });
+      return [expense, ...prevExpenses];
+    }); 
   }
 
 
