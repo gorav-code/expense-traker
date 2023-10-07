@@ -2,7 +2,7 @@ import './ExpenseForm.css';
 import React, { useState } from 'react';
 
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
@@ -28,8 +28,10 @@ const ExpenseForm = () => {
             inputDate: date
         };
 
-        console.log('inputData');
         console.log(formData);
+
+        //send data to parent method
+        props.onSaveExpenseData(formData);        
 
         //reset input fields
         resetInputFields();
