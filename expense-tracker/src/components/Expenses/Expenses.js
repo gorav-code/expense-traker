@@ -1,11 +1,10 @@
 import Card from '../Card/Card';
 import ExpenseItem from '../ExpenseItem/ExpenseItem';
 
-
 function Expenses(props) {
-
-    console.log(props.items);
     const expenses = props.items;
+
+    console.log(props);
 
     //in case no expenses found.
     if (props.items.length === 0) {
@@ -14,10 +13,14 @@ function Expenses(props) {
 
     return (
         <ul className='expenses-list'>
-            {
-                //passing paramters individually
+            { 
                 expenses.map((item) => {
-                    return <ExpenseItem key={item.id} title={item.title} amount={item.amount} date={item.date}></ExpenseItem>
+                    return <ExpenseItem
+                        key={item.id}
+                        title={item.title}
+                        amount={item.amount}
+                        date={item.date}>
+                    </ExpenseItem>
                 })
             }
         </ul>

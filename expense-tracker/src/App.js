@@ -5,6 +5,7 @@ import Card from './components/Card/Card';
 import NewExpense from './components/NewExpense/NewExpense';
 import ExpenseFilter from './components/Expenses/ExpenseFilter/ExpenseFilter';
 import React, { useState } from 'react';
+import ExpensesChart from './components/ExpenseChart/ExpenseChart';
 
 const expensesOriginal = [
   {
@@ -28,12 +29,24 @@ const expensesOriginal = [
   },
 ]
 
+const filterExpensesByYear = (year) => {  
+  const filteredExpenses = expensesOriginal.filter((item) => {
+    const itemYear = item.date.getFullYear(); 
+    if(itemYear == year){ 
+      return true;
+    }else { 
+      return false;      
+    }
+  });
+
+  console.log(filteredExpenses);
+  return filteredExpenses;
+}
+
 function App() {
   const [filterYear, setFilterYear] = useState('2020');
   const [filterInfoText, setFilterInfoText] = useState('2019, 2021 & 2022');
-
-  const [expenses, setExpenses] = useState(expensesOriginal);
-
+  const [expenses, setExpenses] = useState(filterExpensesByYear(filterYear));
 
   const addExpenseHandler = (expense) => {
     console.log('in app.js');
@@ -52,6 +65,8 @@ function App() {
 
   const filterChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
+    setExpenses(filterExpensesByYear(selectedYear)); 
+
     if (selectedYear === '2019') {
       setFilterInfoText('2020, 2021 & 2022');
     } else if (selectedYear === '2020') {
@@ -66,14 +81,13 @@ function App() {
   return (
     <div>
       <h1>Lets gets started!</h1>
-      <Card className="expenses">
-        <NewExpense onAddExpense={addExpenseHandler} />
-      </Card>
+      <NewExpense onAddExpense={addExpenseHandler} />
 
       <Card className="expenses">
         <ExpenseFilter selected={filterYear} onChangeFilter={filterChangeHandler} />
-        <p>Date for years {filterInfoText} is hidden.</p>
+        <ExpensesChart expenses={expenses}/>
 
+        <p>Date for years {filterInfoText} is hidden.</p>
         <Expenses items={expenses} />
       </Card>
     </div>
